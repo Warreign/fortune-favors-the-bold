@@ -3,7 +3,7 @@ extends Node
 var sb
 
 @export var dirt_prefab: PackedScene
-@export var DIRT_NUMBER = 5
+@export var DIRT_NUMBER = 1000
 
 var colorRed = Color("ff0000")
 var colorOrange = Color("e8680f")

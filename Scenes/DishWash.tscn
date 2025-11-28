@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://dn2le3mwahtax"]
 
-[ext_resource type="Script" uid="uid://4t5onjnahikh" path="res://Scripts/dirt_spawner.gd" id="1_hivxq"]
+[ext_resource type="Script" uid="uid://blqx70sywhngi" path="res://Scripts/dirt_spawner.gd" id="1_hivxq"]
 [ext_resource type="Texture2D" uid="uid://btxyxybofpojj" path="res://Sprites/WashGame/Plate.png" id="2_l2ru7"]
 [ext_resource type="PackedScene" uid="uid://dr7seaticcntf" path="res://Prefabs/Dirt.tscn" id="2_sjp6k"]
-[ext_resource type="Script" uid="uid://cv5rwfjvsifvw" path="res://Scripts/sponge.gd" id="3_i71ie"]
+[ext_resource type="Script" uid="uid://cbb0f3rgtib20" path="res://Scripts/sponge.gd" id="3_i71ie"]
 [ext_resource type="Texture2D" uid="uid://sx5me1row1p2" path="res://Sprites/WashGame/BackgroundWashGame.png" id="4_1q3xq"]
 [ext_resource type="Texture2D" uid="uid://b3yvrtrvg4o2m" path="res://Sprites/WashGame/Sponge.png" id="6_n14uh"]
 
@@ -54,7 +54,7 @@ layout_mode = 2
 
 [node name="CorrectLabel" type="Label" parent="CenterContainer/Control"]
 visible = false
-layout_mode = 2
+layout_mode = 0
 offset_left = -8.5
 offset_top = 0.5
 offset_right = 49.5
@@ -65,7 +65,7 @@ horizontal_alignment = 1
 
 [node name="WrongLabel" type="Label" parent="CenterContainer/Control"]
 visible = false
-layout_mode = 2
+layout_mode = 0
 offset_left = -8.5
 offset_top = 0.5
 offset_right = 49.5
@@ -84,9 +84,10 @@ border_color = Color(1, 0, 0, 0)
 [node name="DirtSpawner" type="Node" parent="."]
 script = ExtResource("1_hivxq")
 dirt_prefab = ExtResource("2_sjp6k")
+DIRT_NUMBER = 300
 
 [node name="ThinkTimer" type="Timer" parent="DirtSpawner"]
-wait_time = 1.2
+wait_time = 4.0
 autostart = true
 
 [node name="CorrectTimer" type="Timer" parent="DirtSpawner"]
@@ -130,6 +131,8 @@ offset_right = 1110.0
 offset_bottom = 65.0
 text = "Hover over dirt
 with the sponge"
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 
 [connection signal="timeout" from="DirtSpawner/ThinkTimer" to="DirtSpawner" method="_on_timer_timeout"]
 [connection signal="timeout" from="DirtSpawner/CorrectTimer" to="DirtSpawner" method="_on_correct_timer_timeout"]
