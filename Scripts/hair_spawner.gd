@@ -2,15 +2,15 @@ extends Node
 
 var sb
 
-@export var dirt_prefab: PackedScene
-@export var DIRT_NUMBER = 1000
+@export var hair_prefab: PackedScene
+@export var HAIR_NUMBER = 300
 
 var colorRed = Color("ff0000")
 var colorOrange = Color("e8680f")
 var colorGreen = Color("00ff00")
 
-var dirt_list: Array[Node]
-var dirt_num = 0
+var hair_list: Array[Node]
+var hair_num = 0
 
 @export var MAX_ITERATION = 10
 var current_iteration = 1
@@ -26,16 +26,16 @@ func _ready() -> void:
 	
 	$"../CenterContainer/ProgressBar".max_value = $ThinkTimer.wait_time
 	
-	dirt_num = DIRT_NUMBER
-	spawn_dirts(dirt_num)
+	hair_num = HAIR_NUMBER
+	spawn_hairs(hair_num)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if dirt_num <= 0:
+	if hair_num <= 0:
 		print("em")
-		dirt_num = DIRT_NUMBER
-		spawn_dirts(dirt_num)
+		hair_num = HAIR_NUMBER
+		spawn_hairs(hair_num)
 		$"../CenterContainer/Control/CorrectLabel".visible = true
 		$CorrectTimer.start()
 		$ThinkTimer.start()
@@ -64,7 +64,7 @@ func _process(delta: float) -> void:
 func _on_timer_timeout() -> void:
 	print("Bembelem Timer")
 	$"../CenterContainer/Control/WrongLabel".visible = true
-	free_dirt()
+	free_hair()
 	
 	$WrongTimer.start()
 	#$ThinkTimer.start()
@@ -79,36 +79,36 @@ func _on_wrong_timer_timeout() -> void:
 	$"../CenterContainer/Control/WrongLabel".visible = false
 
 
-func spawn_dirts(number: int):
+func spawn_hairs(number: int):
 	var spawn_rect = $"../ReferenceRect"
 	var pos
 	# https://www.youtube.com/watch?v=33odP1o2N2Q
 	for n in number:
 		pos = spawn_rect.position +\
 		 Vector2(randf() * spawn_rect.size.x, randf() * spawn_rect.size.y)
-		spawn_dirt(dirt_prefab, pos)
+		spawn_hair(hair_prefab, pos)
 		
 
 
-func spawn_dirt(prefab, pos):
+func spawn_hair(prefab, pos):
 	var inst = prefab.instantiate()
 	add_child(inst)
-	dirt_list.append(inst)
+	hair_list.append(inst)
 	inst.position = pos
-	inst.connect("washed", _on_dirt_washed)
+	inst.connect("washed", _on_hair_cut)
 
 
-func free_dirt():
-	for d in dirt_list:
+func free_hair():
+	for d in hair_list:
 		d.free()
 	
-	dirt_list.clear()
-	dirt_num = DIRT_NUMBER
-	spawn_dirts(dirt_num)
+	hair_list.clear()
+	hair_num = HAIR_NUMBER
+	spawn_hairs(hair_num)
 
 
-func _on_dirt_washed(drt: Node) -> void:
-	dirt_list.erase(drt)
+func _on_hair_cut(drt: Node) -> void:
+	hair_list.erase(drt)
 	print(drt)
 	drt.queue_free()
-	dirt_num -= 1
+	hair_num -= 1

@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://dn2le3mwahtax"]
 
-[ext_resource type="Script" uid="uid://blqx70sywhngi" path="res://Scripts/dirt_spawner.gd" id="1_hivxq"]
+[ext_resource type="Script" uid="uid://blqx70sywhngi" path="res://Scripts/hair_spawner.gd" id="1_hivxq"]
 [ext_resource type="Texture2D" uid="uid://btxyxybofpojj" path="res://Sprites/WashGame/Plate.png" id="2_l2ru7"]
-[ext_resource type="PackedScene" uid="uid://dr7seaticcntf" path="res://Prefabs/Dirt.tscn" id="2_sjp6k"]
 [ext_resource type="Script" uid="uid://cbb0f3rgtib20" path="res://Scripts/sponge.gd" id="3_i71ie"]
 [ext_resource type="Texture2D" uid="uid://sx5me1row1p2" path="res://Sprites/WashGame/BackgroundWashGame.png" id="4_1q3xq"]
+[ext_resource type="PackedScene" uid="uid://dr7seaticcntf" path="res://Prefabs/Hair.tscn" id="4_3xqlg"]
 [ext_resource type="Texture2D" uid="uid://b3yvrtrvg4o2m" path="res://Sprites/WashGame/Sponge.png" id="6_n14uh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_twggc"]
@@ -81,19 +81,18 @@ offset_right = 745.0
 offset_bottom = 528.0
 border_color = Color(1, 0, 0, 0)
 
-[node name="DirtSpawner" type="Node" parent="."]
+[node name="HairSpawner" type="Node" parent="."]
 script = ExtResource("1_hivxq")
-dirt_prefab = ExtResource("2_sjp6k")
-DIRT_NUMBER = 300
+hair_prefab = ExtResource("4_3xqlg")
 
-[node name="ThinkTimer" type="Timer" parent="DirtSpawner"]
+[node name="ThinkTimer" type="Timer" parent="HairSpawner"]
 wait_time = 4.0
 autostart = true
 
-[node name="CorrectTimer" type="Timer" parent="DirtSpawner"]
+[node name="CorrectTimer" type="Timer" parent="HairSpawner"]
 wait_time = 0.2
 
-[node name="WrongTimer" type="Timer" parent="DirtSpawner"]
+[node name="WrongTimer" type="Timer" parent="HairSpawner"]
 wait_time = 0.2
 
 [node name="Sponge" type="CharacterBody2D" parent="." groups=["Sponge"]]
@@ -134,6 +133,6 @@ with the sponge"
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 
-[connection signal="timeout" from="DirtSpawner/ThinkTimer" to="DirtSpawner" method="_on_timer_timeout"]
-[connection signal="timeout" from="DirtSpawner/CorrectTimer" to="DirtSpawner" method="_on_correct_timer_timeout"]
-[connection signal="timeout" from="DirtSpawner/WrongTimer" to="DirtSpawner" method="_on_wrong_timer_timeout"]
+[connection signal="timeout" from="HairSpawner/ThinkTimer" to="HairSpawner" method="_on_timer_timeout"]
+[connection signal="timeout" from="HairSpawner/CorrectTimer" to="HairSpawner" method="_on_correct_timer_timeout"]
+[connection signal="timeout" from="HairSpawner/WrongTimer" to="HairSpawner" method="_on_wrong_timer_timeout"]

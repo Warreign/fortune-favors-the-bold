@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dr7seaticcntf"]
 
-[ext_resource type="Script" path="res://Scripts/dirt.gd" id="1_8aga3"]
+[ext_resource type="Script" uid="uid://dmqodulj3qb0c" path="res://Scripts/hair.gd" id="1_8aga3"]
 [ext_resource type="Texture2D" uid="uid://burkwx8jakqif" path="res://Sprites/WashGame/Trash.png" id="2_qsw7p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wpepe"]
