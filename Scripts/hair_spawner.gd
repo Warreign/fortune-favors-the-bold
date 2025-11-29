@@ -4,6 +4,8 @@ var sb
 
 @export var hair_prefab: PackedScene
 @export var HAIR_NUMBER = 300
+@export var CHANCE = 50
+@export var MAX_CHANCE = 100
 
 var colorRed = Color("ff0000")
 var colorOrange = Color("e8680f")
@@ -95,7 +97,7 @@ func spawn_hair(prefab, pos):
 	add_child(inst)
 	hair_list.append(inst)
 	inst.position = pos
-	inst.connect("washed", _on_hair_cut)
+	inst.connect("cut", _on_hair_cut)
 
 
 func free_hair():
@@ -108,7 +110,8 @@ func free_hair():
 
 
 func _on_hair_cut(drt: Node) -> void:
-	hair_list.erase(drt)
-	print(drt)
-	drt.queue_free()
-	hair_num -= 1
+	if (randi() % MAX_CHANCE <= CHANCE):
+		hair_list.erase(drt)
+		print(drt)
+		drt.queue_free()
+		hair_num -= 1

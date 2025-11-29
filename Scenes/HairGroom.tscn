@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://blqx70sywhngi" path="res://Scripts/hair_spawner.gd" id="1_hivxq"]
 [ext_resource type="Texture2D" uid="uid://btxyxybofpojj" path="res://Sprites/WashGame/Plate.png" id="2_l2ru7"]
-[ext_resource type="Script" uid="uid://cbb0f3rgtib20" path="res://Scripts/sponge.gd" id="3_i71ie"]
+[ext_resource type="Script" uid="uid://cbb0f3rgtib20" path="res://Scripts/shaver.gd" id="3_i71ie"]
 [ext_resource type="Texture2D" uid="uid://sx5me1row1p2" path="res://Sprites/WashGame/BackgroundWashGame.png" id="4_1q3xq"]
 [ext_resource type="PackedScene" uid="uid://dr7seaticcntf" path="res://Prefabs/Hair.tscn" id="4_3xqlg"]
 [ext_resource type="Texture2D" uid="uid://b3yvrtrvg4o2m" path="res://Sprites/WashGame/Sponge.png" id="6_n14uh"]
@@ -10,7 +10,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_twggc"]
 size = Vector2(81.5586, 117.473)
 
-[node name="DishWash" type="Node2D"]
+[node name="HairGroom" type="Node2D"]
 
 [node name="BackgroundWashGame" type="Sprite2D" parent="."]
 position = Vector2(576, 324)
@@ -86,7 +86,7 @@ script = ExtResource("1_hivxq")
 hair_prefab = ExtResource("4_3xqlg")
 
 [node name="ThinkTimer" type="Timer" parent="HairSpawner"]
-wait_time = 4.0
+wait_time = 10.0
 autostart = true
 
 [node name="CorrectTimer" type="Timer" parent="HairSpawner"]
@@ -94,27 +94,6 @@ wait_time = 0.2
 
 [node name="WrongTimer" type="Timer" parent="HairSpawner"]
 wait_time = 0.2
-
-[node name="Sponge" type="CharacterBody2D" parent="." groups=["Sponge"]]
-position = Vector2(0, -1)
-script = ExtResource("3_i71ie")
-
-[node name="Sponge2" type="Sprite2D" parent="Sponge"]
-position = Vector2(366.708, 196.641)
-scale = Vector2(2.65168, 2.8503)
-texture = ExtResource("6_n14uh")
-
-[node name="ColorRect" type="ColorRect" parent="Sponge"]
-visible = false
-offset_top = 1.0
-offset_right = 366.0
-offset_bottom = 181.0
-color = Color(0.992157, 0.992157, 0.227451, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sponge"]
-position = Vector2(366, 205)
-rotation = -0.528221
-shape = SubResource("RectangleShape2D_twggc")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 45.0
@@ -132,6 +111,28 @@ text = "Hover over dirt
 with the sponge"
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+
+[node name="Shaver" type="CharacterBody2D" parent="." groups=["Shaver"]]
+position = Vector2(1, 1)
+script = ExtResource("3_i71ie")
+
+[node name="Shaver2" type="Sprite2D" parent="Shaver"]
+visibility_layer = 2
+position = Vector2(366.708, 196.641)
+scale = Vector2(2.65168, 2.8503)
+texture = ExtResource("6_n14uh")
+
+[node name="ColorRect" type="ColorRect" parent="Shaver"]
+visible = false
+offset_top = 1.0
+offset_right = 366.0
+offset_bottom = 181.0
+color = Color(0.992157, 0.992157, 0.227451, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shaver"]
+position = Vector2(366, 205.00002)
+rotation = -0.528221
+shape = SubResource("RectangleShape2D_twggc")
 
 [connection signal="timeout" from="HairSpawner/ThinkTimer" to="HairSpawner" method="_on_timer_timeout"]
 [connection signal="timeout" from="HairSpawner/CorrectTimer" to="HairSpawner" method="_on_correct_timer_timeout"]
