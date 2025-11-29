@@ -84,6 +84,7 @@ border_color = Color(1, 0, 0, 0)
 [node name="HairSpawner" type="Node" parent="."]
 script = ExtResource("1_hivxq")
 hair_prefab = ExtResource("4_3xqlg")
+CHANCE = 70
 
 [node name="ThinkTimer" type="Timer" parent="HairSpawner"]
 wait_time = 10.0
@@ -113,6 +114,7 @@ with the sponge"
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 
 [node name="Shaver" type="CharacterBody2D" parent="." groups=["Shaver"]]
+z_index = 1
 position = Vector2(1, 1)
 script = ExtResource("3_i71ie")
 
