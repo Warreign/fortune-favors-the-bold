@@ -12,6 +12,11 @@ var is_paused: bool:
 	set(value):
 		_is_paused = value
 		
+func initialize_end_screen(shave_percent: float, customer_num: int):
+	var level_end_instance = preload(level_end_widget_path).instantiate()
+	add_child(level_end_instance)
+	level_end_instance.initialize_level_end(customer_num, shave_percent)
+		
 
 func _process(delta: float):
 	if Input.is_action_just_pressed("to_main_menu"):
@@ -25,5 +30,5 @@ func _process(delta: float):
 			
 		if Input.is_action_just_pressed("_end_level"):
 			var level_end_instance = preload(level_end_widget_path).instantiate()
-			level_end_instance.initialize_level_end(customer_number)
+			level_end_instance.initialize_level_end(customer_number, 33.3)
 			add_child(level_end_instance)

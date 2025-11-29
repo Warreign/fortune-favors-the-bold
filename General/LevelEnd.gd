@@ -1,9 +1,13 @@
 extends CanvasLayer
 
 var current_customer_num: int
+@onready var percent_label: Label = $Container/StatsContainer/PercentStat/Value
+@onready var num_label: Label = $Container/StatsContainer/CustomerStat/Value
 
-func initialize_level_end(customer_num: int):
+func initialize_level_end(customer_num: int, percent: float):
 	current_customer_num = customer_num
+	percent_label.set_text(String.num(percent))
+	num_label.set_text(String.num_int64(customer_num))
 
 func _on_exit_pressed() -> void:
 	SceneLoader.load_scene(get_parent(), "main_menu", "Returning to menu")
