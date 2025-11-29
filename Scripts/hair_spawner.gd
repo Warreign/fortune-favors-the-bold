@@ -50,6 +50,12 @@ func _process(delta: float) -> void:
 		#current_iteration += 1
 		emit_signal("end")
 	
+	if Input.is_action_just_pressed("start_cut") and not $"..".is_paused:
+		AudioManager.shave.play()
+	
+	if Input.is_action_just_released("start_cut"):
+		AudioManager.shave.stop()
+	
 	if $"..".is_paused:
 		$ThinkTimer.paused = true
 	
