@@ -1,11 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://dn2le3mwahtax"]
+[gd_scene load_steps=9 format=3 uid="uid://dn2le3mwahtax"]
 
+[ext_resource type="Texture2D" uid="uid://7ugarm1hxci4" path="res://Sprites/WashGame/Game.png" id="1_0nlrr"]
 [ext_resource type="Script" uid="uid://blqx70sywhngi" path="res://Scripts/hair_spawner.gd" id="1_hivxq"]
 [ext_resource type="Texture2D" uid="uid://btxyxybofpojj" path="res://Sprites/WashGame/Plate.png" id="2_l2ru7"]
 [ext_resource type="Script" uid="uid://cbb0f3rgtib20" path="res://Scripts/shaver.gd" id="3_i71ie"]
-[ext_resource type="Texture2D" uid="uid://sx5me1row1p2" path="res://Sprites/WashGame/BackgroundWashGame.png" id="4_1q3xq"]
 [ext_resource type="PackedScene" uid="uid://dr7seaticcntf" path="res://Prefabs/Hair.tscn" id="4_3xqlg"]
 [ext_resource type="Texture2D" uid="uid://b3yvrtrvg4o2m" path="res://Sprites/WashGame/Sponge.png" id="6_n14uh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0nlrr"]
+radius = 251.00797
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_twggc"]
 size = Vector2(81.5586, 35.125847)
@@ -13,11 +16,11 @@ size = Vector2(81.5586, 35.125847)
 [node name="HairGroom" type="Node2D"]
 
 [node name="BackgroundWashGame" type="Sprite2D" parent="."]
-position = Vector2(576, 324)
-scale = Vector2(4.5, 5.0625)
-texture = ExtResource("4_1q3xq")
+position = Vector2(575.49976, 321.50012)
+scale = Vector2(0.6015623, 0.5990741)
+texture = ExtResource("1_0nlrr")
 
-[node name="Plate" type="Control" parent="."]
+[node name="Head" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 349.0
@@ -25,7 +28,7 @@ offset_top = 65.0
 offset_right = 812.0
 offset_bottom = 528.0
 
-[node name="Plate" type="Sprite2D" parent="Plate"]
+[node name="Plate" type="Sprite2D" parent="Head"]
 position = Vector2(227, 259)
 scale = Vector2(4.5, 5.0625)
 texture = ExtResource("2_l2ru7")
@@ -87,6 +90,12 @@ offset_top = 180.0
 offset_right = 745.0
 offset_bottom = 528.0
 border_color = Color(1, 0, 0, 0)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="ReferenceHeadCollision" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(569, 357)
+shape = SubResource("CircleShape2D_0nlrr")
 
 [node name="HairSpawner" type="Node" parent="."]
 script = ExtResource("1_hivxq")
