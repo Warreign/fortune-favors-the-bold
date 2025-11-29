@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bv0dcaep2esce"]
+
+[node name="Hud" type="CanvasLayer"]
+layer = 4
+
+[node name="Grid" type="GridContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+columns = 3
+
+[node name="Test" type="Label" parent="Grid"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "Test label"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Test2" type="Label" parent="Grid"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 2
+text = "Test label"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Test3" type="Label" parent="Grid"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "Test label"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,92 @@
+[gd_scene load_steps=2 format=3 uid="uid://80ey67ev4igw"]
+
+[ext_resource type="Script" uid="uid://sj46uu1aptnp" path="res://General/LevelEnd.gd" id="1_shjiq"]
+
+[node name="LevelEnd" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1_shjiq")
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.3254902)
+
+[node name="Title" type="Label" parent="Container"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -0.5
+offset_right = 0.5
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "sdasd"
+horizontal_alignment = 1
+
+[node name="StatsContainer" type="VBoxContainer" parent="Container"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="CustomerStat" type="HBoxContainer" parent="Container/StatsContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="Container/StatsContainer/CustomerStat"]
+layout_mode = 2
+text = "Customer:"
+
+[node name="Value" type="Label" parent="Container/StatsContainer/CustomerStat"]
+layout_mode = 2
+text = "#1"
+
+[node name="PercentStat" type="HBoxContainer" parent="Container/StatsContainer"]
+layout_mode = 2
+
+[node name="PercentLabel" type="Label" parent="Container/StatsContainer/PercentStat"]
+layout_mode = 2
+text = "Shaved:"
+
+[node name="Value" type="Label" parent="Container/StatsContainer/PercentStat"]
+layout_mode = 2
+text = "100"
+
+[node name="Symbol" type="Label" parent="Container/StatsContainer/PercentStat"]
+layout_mode = 2
+text = "%"
+
+[node name="Buttons" type="HBoxContainer" parent="Container/StatsContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Exit" type="Button" parent="Container/StatsContainer/Buttons"]
+layout_mode = 2
+text = "Exit"
+
+[node name="Next" type="Button" parent="Container/StatsContainer/Buttons"]
+layout_mode = 2
+text = "Next"
+
+[connection signal="pressed" from="Container/StatsContainer/Buttons/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Container/StatsContainer/Buttons/Next" to="." method="_on_next_pressed"]
