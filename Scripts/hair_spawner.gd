@@ -47,7 +47,6 @@ func _process(delta: float) -> void:
 		$ThinkTimer.start()
 		current_iteration += 1
 	
-	
 	var wt = $ThinkTimer.wait_time
 	var tl = $ThinkTimer.time_left
 	
@@ -135,7 +134,7 @@ func free_hair():
 
 
 func _on_hair_cut(drt: Node) -> void:
-	if (randi() % MAX_CHANCE <= CHANCE):
+	if (Input.is_action_pressed("start_cut")) and (randi() % MAX_CHANCE <= CHANCE):
 		hair_list.erase(drt)
 		print(drt)
 		drt.queue_free()
