@@ -33,7 +33,7 @@ func _ready() -> void:
 	
 	$"../CenterContainer/ProgressBar".max_value = $ThinkTimer.wait_time
 	
-	$"../Sprite2D/ClockLabel".text = clock_format % [60, 0, 0]
+	$"../Clock/ClockLabel".text = clock_format % [60, 0, 0]
 	hair_num = HAIR_NUMBER
 	spawn_hairs(hair_num)
 
@@ -69,7 +69,7 @@ func _process(delta: float) -> void:
 	var sec = fmod(tl, 60)
 	var minit = tl / 60
 
-	$"../Sprite2D/ClockLabel".text = clock_format % [minit, sec, msec]
+	$"../Clock/ClockLabel".text = clock_format % [minit, sec, msec]
 
 	$"../CenterContainer/ProgressBar".value = wt - tl
 	
@@ -150,7 +150,9 @@ func free_hair():
 
 
 func _on_hair_cut(drt: Node) -> void:
-	if (Input.is_action_pressed("start_cut")) and (randi() % MAX_CHANCE <= CHANCE):
+	var chance_current = randi() % MAX_CHANCE 
+	if (Input.is_action_pressed("start_cut")) and (chance_current <= CHANCE):
+		print(chance_current)
 		hair_list.erase(drt)
 		print(drt)
 		drt.queue_free()

@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dn2le3mwahtax"]
+[gd_scene load_steps=13 format=3 uid="uid://dn2le3mwahtax"]
 
 [ext_resource type="Texture2D" uid="uid://7ugarm1hxci4" path="res://Sprites/WashGame/Game.png" id="1_0nlrr"]
 [ext_resource type="Script" uid="uid://blqx70sywhngi" path="res://Scripts/hair_spawner.gd" id="1_hivxq"]
 [ext_resource type="Script" uid="uid://bc5wc0glnq37g" path="res://Levels/Customer.gd" id="1_ue8b2"]
 [ext_resource type="Texture2D" uid="uid://pief7y7ppxla" path="res://Sprites/WashGame/headF.png" id="2_0nlrr"]
 [ext_resource type="Script" uid="uid://cbb0f3rgtib20" path="res://Scripts/shaver.gd" id="3_i71ie"]
+[ext_resource type="Texture2D" uid="uid://dy1p8s5ej0mti" path="res://Sprites/WashGame/chair.png" id="3_ove2h"]
 [ext_resource type="PackedScene" uid="uid://dr7seaticcntf" path="res://Prefabs/Hair.tscn" id="4_3xqlg"]
 [ext_resource type="Texture2D" uid="uid://c2tdn2yv62tj8" path="res://Sprites/WashGame/timer.png" id="4_cnocn"]
 [ext_resource type="Texture2D" uid="uid://7ixxwlmtejei" path="res://Sprites/WashGame/shaver.png" id="7_eyhjp"]
@@ -27,22 +28,27 @@ texture = ExtResource("1_0nlrr")
 [node name="Head" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 349.0
-offset_top = 65.0
-offset_right = 812.0
-offset_bottom = 528.0
+offset_left = 347.0
+offset_top = 27.0
+offset_right = 810.0
+offset_bottom = 490.0
 
 [node name="Head" type="Sprite2D" parent="Head"]
 position = Vector2(213.99994, 290.99994)
 scale = Vector2(0.2554876, 0.2309982)
 texture = ExtResource("2_0nlrr")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Chair" type="Sprite2D" parent="."]
+position = Vector2(561, 632)
+scale = Vector2(0.207, 0.206)
+texture = ExtResource("3_ove2h")
+
+[node name="Clock" type="Sprite2D" parent="."]
 position = Vector2(573, 111.000015)
 scale = Vector2(0.12, 0.12)
 texture = ExtResource("4_cnocn")
 
-[node name="ClockLabel" type="Label" parent="Sprite2D"]
+[node name="ClockLabel" type="Label" parent="Clock"]
 offset_left = -1000.00024
 offset_top = -475.00015
 offset_right = 950.00024
@@ -102,6 +108,7 @@ offset_bottom = 528.0
 border_color = Color(1, 0, 0, 0)
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-2, -38)
 
 [node name="ReferenceHeadCollision" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(563, 316)
@@ -110,6 +117,7 @@ shape = SubResource("CircleShape2D_0nlrr")
 [node name="HairSpawner" type="Node" parent="."]
 script = ExtResource("1_hivxq")
 hair_prefab = ExtResource("4_3xqlg")
+CHANCE = 10
 
 [node name="ThinkTimer" type="Timer" parent="HairSpawner"]
 wait_time = 100.0
