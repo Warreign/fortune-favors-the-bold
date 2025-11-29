@@ -11,6 +11,9 @@ var colorRed = Color("ff0000")
 var colorOrange = Color("e8680f")
 var colorGreen = Color("00ff00")
 
+# inspiration for timer: https://www.youtube.com/watch?v=HrBjzSqEpwE
+var clock_format = "%02d : %02d : %02d" 
+
 var hair_list: Array[Node]
 var hair_num = 0
 
@@ -28,6 +31,7 @@ func _ready() -> void:
 	
 	$"../CenterContainer/ProgressBar".max_value = $ThinkTimer.wait_time
 	
+	$"../CenterContainer/Control/ClockLabel".text = clock_format % [60, 0, 0]
 	hair_num = HAIR_NUMBER
 	spawn_hairs(hair_num)
 
@@ -43,9 +47,16 @@ func _process(delta: float) -> void:
 		$ThinkTimer.start()
 		current_iteration += 1
 	
+	
 	var wt = $ThinkTimer.wait_time
 	var tl = $ThinkTimer.time_left
 	
+	var msec = fmod(tl, 1) * 1000
+	var sec = fmod(tl, 60)
+	var minit = tl / 60
+
+	$"../CenterContainer/Control/ClockLabel".text = clock_format % [minit, sec, msec]
+
 	$"../CenterContainer/ProgressBar".value = wt - tl
 	
 	if tl < wt/2:
@@ -53,7 +64,7 @@ func _process(delta: float) -> void:
 		sb.bg_color = colorOrange.lerp(colorRed, ((wt/2-tl)/(wt/2)))
 	else:
 		#green
-		sb.bg_color = colorGreen.lerp(colorOrange, wt/2 - ((tl-(wt/2))/(wt/2)))
+		sb.bg_color = colorGreen.lerp(colorOrange, ((wt-tl)/(wt/2)))
 	
 	if current_iteration > MAX_ITERATION:
 		pass
