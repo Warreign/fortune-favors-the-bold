@@ -14,7 +14,7 @@ var colorOrange = Color("e8680f")
 var colorGreen = Color("00ff00")
 
 # inspiration for timer: https://www.youtube.com/watch?v=HrBjzSqEpwE
-var clock_format = "%02d : %02d : %02d" 
+var clock_format = "%02d:%02d:%02d" 
 
 var hair_list: Array[Node]
 var hair_num = 0
@@ -33,7 +33,7 @@ func _ready() -> void:
 	
 	$"../CenterContainer/ProgressBar".max_value = $ThinkTimer.wait_time
 	
-	$"../CenterContainer/Control/ClockLabel".text = clock_format % [60, 0, 0]
+	$"../Sprite2D/ClockLabel".text = clock_format % [60, 0, 0]
 	hair_num = HAIR_NUMBER
 	spawn_hairs(hair_num)
 
@@ -69,7 +69,7 @@ func _process(delta: float) -> void:
 	var sec = fmod(tl, 60)
 	var minit = tl / 60
 
-	$"../CenterContainer/Control/ClockLabel".text = clock_format % [minit, sec, msec]
+	$"../Sprite2D/ClockLabel".text = clock_format % [minit, sec, msec]
 
 	$"../CenterContainer/ProgressBar".value = wt - tl
 	

@@ -1,14 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://dn2le3mwahtax"]
+[gd_scene load_steps=11 format=3 uid="uid://db5og1n43icle"]
 
-[ext_resource type="Texture2D" uid="uid://7ugarm1hxci4" path="res://Sprites/WashGame/Game.png" id="1_0nlrr"]
-[ext_resource type="Script" uid="uid://blqx70sywhngi" path="res://Scripts/hair_spawner.gd" id="1_hivxq"]
-[ext_resource type="Script" uid="uid://bc5wc0glnq37g" path="res://Levels/Customer.gd" id="1_ue8b2"]
-[ext_resource type="Texture2D" uid="uid://pief7y7ppxla" path="res://Sprites/WashGame/headF.png" id="2_0nlrr"]
-[ext_resource type="Script" uid="uid://cbb0f3rgtib20" path="res://Scripts/shaver.gd" id="3_i71ie"]
-[ext_resource type="PackedScene" uid="uid://dr7seaticcntf" path="res://Prefabs/Hair.tscn" id="4_3xqlg"]
-[ext_resource type="Texture2D" uid="uid://c2tdn2yv62tj8" path="res://Sprites/WashGame/timer.png" id="4_cnocn"]
-[ext_resource type="Texture2D" uid="uid://7ixxwlmtejei" path="res://Sprites/WashGame/shaver.png" id="7_eyhjp"]
-[ext_resource type="Texture2D" uid="uid://ciy1ymckktomb" path="res://Sprites/WashGame/shaver_head1.png" id="8_cnocn"]
+[ext_resource type="Script" uid="uid://bc5wc0glnq37g" path="res://Levels/Customer.gd" id="1_penn8"]
+[ext_resource type="Texture2D" uid="uid://7ugarm1hxci4" path="res://Sprites/WashGame/Game.png" id="2_je866"]
+[ext_resource type="Texture2D" uid="uid://pief7y7ppxla" path="res://Sprites/WashGame/headF.png" id="3_tsiw0"]
+[ext_resource type="Script" uid="uid://blqx70sywhngi" path="res://Scripts/hair_spawner.gd" id="4_fekt3"]
+[ext_resource type="PackedScene" uid="uid://dr7seaticcntf" path="res://Prefabs/Hair.tscn" id="5_031yc"]
+[ext_resource type="Script" uid="uid://cbb0f3rgtib20" path="res://Scripts/shaver.gd" id="6_lsr2i"]
+[ext_resource type="Texture2D" uid="uid://7ixxwlmtejei" path="res://Sprites/WashGame/shaver.png" id="7_622bu"]
+[ext_resource type="Texture2D" uid="uid://ciy1ymckktomb" path="res://Sprites/WashGame/shaver_head1.png" id="8_inxs3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0nlrr"]
 radius = 129.0
@@ -17,12 +16,12 @@ radius = 129.0
 size = Vector2(49.66404, 31.659348)
 
 [node name="HairGroom" type="Node2D"]
-script = ExtResource("1_ue8b2")
+script = ExtResource("1_penn8")
 
-[node name="BackgroundShaveGame" type="Sprite2D" parent="."]
+[node name="BackgroundWashGame" type="Sprite2D" parent="."]
 position = Vector2(575.49976, 321.50012)
 scale = Vector2(0.6015623, 0.5990741)
-texture = ExtResource("1_0nlrr")
+texture = ExtResource("2_je866")
 
 [node name="Head" type="Control" parent="."]
 layout_mode = 3
@@ -35,20 +34,7 @@ offset_bottom = 528.0
 [node name="Head" type="Sprite2D" parent="Head"]
 position = Vector2(213.99994, 290.99994)
 scale = Vector2(0.2554876, 0.2309982)
-texture = ExtResource("2_0nlrr")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(573, 111.000015)
-scale = Vector2(0.12, 0.12)
-texture = ExtResource("4_cnocn")
-
-[node name="ClockLabel" type="Label" parent="Sprite2D"]
-offset_left = -1000.00024
-offset_top = -475.00015
-offset_right = 950.00024
-offset_bottom = 49.999847
-theme_override_font_sizes/font_size = 400
-text = "00:00:000"
+texture = ExtResource("3_tsiw0")
 
 [node name="CenterContainer" type="VBoxContainer" parent="."]
 anchors_preset = 8
@@ -94,6 +80,13 @@ theme_override_colors/font_color = Color(0.698039, 0, 0, 1)
 text = "Timeout"
 horizontal_alignment = 1
 
+[node name="ClockLabel" type="Label" parent="CenterContainer/Control"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = -603.0
+offset_right = 146.0
+offset_bottom = -580.0
+
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
 offset_left = 388.0
 offset_top = 180.0
@@ -108,8 +101,8 @@ position = Vector2(563, 316)
 shape = SubResource("CircleShape2D_0nlrr")
 
 [node name="HairSpawner" type="Node" parent="."]
-script = ExtResource("1_hivxq")
-hair_prefab = ExtResource("4_3xqlg")
+script = ExtResource("4_fekt3")
+hair_prefab = ExtResource("5_031yc")
 
 [node name="ThinkTimer" type="Timer" parent="HairSpawner"]
 wait_time = 100.0
@@ -142,21 +135,21 @@ energy = 0.1
 [node name="Shaver" type="CharacterBody2D" parent="." groups=["Shaver"]]
 z_index = 1
 position = Vector2(1, 1)
-script = ExtResource("3_i71ie")
+script = ExtResource("6_lsr2i")
 
 [node name="Shaver2" type="Sprite2D" parent="Shaver"]
 visibility_layer = 2
 position = Vector2(428, 216.00002)
 rotation = -0.64751714
 scale = Vector2(0.4, 0.431)
-texture = ExtResource("7_eyhjp")
+texture = ExtResource("7_622bu")
 
 [node name="Shaver3" type="Sprite2D" parent="Shaver"]
 visibility_layer = 2
 position = Vector2(428, 216.00002)
 rotation = -0.64751714
 scale = Vector2(0.4, 0.431)
-texture = ExtResource("8_cnocn")
+texture = ExtResource("8_inxs3")
 
 [node name="ColorRect" type="ColorRect" parent="Shaver"]
 visible = false
