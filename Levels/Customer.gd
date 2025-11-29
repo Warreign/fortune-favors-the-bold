@@ -5,7 +5,7 @@ const level_end_widget_path: String = "res://General/LevelEnd.tscn"
 
 @export var customer_number: int = 0
 
-var _is_paused: bool
+var _is_paused: bool = false
 var is_paused: bool:
 	get:
 		return _is_paused
@@ -30,5 +30,5 @@ func _process(delta: float):
 			
 		if Input.is_action_just_pressed("_end_level"):
 			var level_end_instance = preload(level_end_widget_path).instantiate()
-			level_end_instance.initialize_level_end(customer_number, 33.3)
 			add_child(level_end_instance)
+			level_end_instance.initialize_level_end(customer_number, 33.3)

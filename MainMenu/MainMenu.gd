@@ -4,7 +4,7 @@ extends Control
 func _ready() -> void:
 	SceneLoader.set_configuration({
 		"scenes": {
-			"customer": "res://Levels/Customer.tscn",
+			"customer1": "res://Levels/Customer1.tscn",
 			"customer2": "res://Levels/Customer2.tscn",
 			"main_menu": "res://MainMenu/MainMenu.tscn"
 		},
@@ -14,7 +14,7 @@ func _ready() -> void:
 
 
 func _on_start_pressed() -> void:
-	SceneLoader.load_scene(self, "customer", "Customer #1")
+	SceneLoader.load_scene(self, "customer1", "Customer #1")
 
 
 func _on_exit_pressed() -> void:
