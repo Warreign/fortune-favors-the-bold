@@ -1,5 +1,7 @@
 extends Node
 
+signal end
+
 var sb
 
 @export var hair_prefab: PackedScene
@@ -40,12 +42,13 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if hair_num <= 0:
 		print("em")
-		hair_num = HAIR_NUMBER
-		spawn_hairs(hair_num)
+		#hair_num = HAIR_NUMBER
+		#spawn_hairs(hair_num)
 		$"../CenterContainer/Control/CorrectLabel".visible = true
 		$CorrectTimer.start()
-		$ThinkTimer.start()
-		current_iteration += 1
+		#$ThinkTimer.start()
+		#current_iteration += 1
+		emit_signal("end")
 	
 	if $"..".is_paused:
 		$ThinkTimer.paused = true
@@ -87,6 +90,7 @@ func _on_timer_timeout() -> void:
 	$WrongTimer.start()
 	#$ThinkTimer.start()
 	current_iteration += 1
+	emit_signal("end")
 
 
 func _on_correct_timer_timeout() -> void:
