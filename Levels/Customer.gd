@@ -32,3 +32,4 @@ func _process(delta: float):
 			var level_end_instance = preload(level_end_widget_path).instantiate()
 			add_child(level_end_instance)
 			level_end_instance.initialize_level_end(customer_number, 33.3)
+			is_paused = true

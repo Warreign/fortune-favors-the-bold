@@ -47,6 +47,12 @@ func _process(delta: float) -> void:
 		$ThinkTimer.start()
 		current_iteration += 1
 	
+	if $"..".is_paused:
+		$ThinkTimer.paused = true
+	
+	if not $"..".is_paused and $ThinkTimer.paused:
+		$ThinkTimer.paused = false
+	
 	var wt = $ThinkTimer.wait_time
 	var tl = $ThinkTimer.time_left
 	
