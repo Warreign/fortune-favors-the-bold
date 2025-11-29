@@ -93,14 +93,15 @@ func _on_wrong_timer_timeout() -> void:
 
 
 func spawn_hairs(number: int):
-	var spawn_rect = $"../ReferenceRect"
-	var rect_center = spawn_rect.position + Vector2(spawn_rect.size.x/2, spawn_rect.size.x/2)
+	# var spawn_rect = $"../ReferenceRect"
+	var spawn_rad = $"../Area2D/ReferenceHeadCollision".shape.radius
+	var rect_center = $"../Area2D/ReferenceHeadCollision".global_position
 	var pos
 	var radius
 	var angle
 	# https://www.youtube.com/watch?v=33odP1o2N2Q
 	for n in number:
-		radius = randf_range(-spawn_rect.size.y/2, spawn_rect.size.y/2)
+		radius = randf_range(-spawn_rad, spawn_rad)
 		angle = randf_range(0, 2*PI)
 		pos = rect_center + Vector2(radius * cos(angle), radius * sin(angle))
 		# pos = spawn_rect.position +\
