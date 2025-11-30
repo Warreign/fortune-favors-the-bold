@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://80ey67ev4igw"]
+[gd_scene load_steps=5 format=3 uid="uid://80ey67ev4igw"]
 
 [ext_resource type="Script" uid="uid://sj46uu1aptnp" path="res://General/LevelEnd.gd" id="1_shjiq"]
+[ext_resource type="Theme" uid="uid://drvxmh87hid0p" path="res://General/ui_theme.tres" id="2_o0fxl"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_o0fxl"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_d2ucb"]
+events = [SubResource("InputEventKey_o0fxl")]
 
 [node name="LevelEnd" type="CanvasLayer"]
 layer = 5
@@ -13,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_o0fxl")
 
 [node name="Background" type="ColorRect" parent="Container"]
 layout_mode = 1
@@ -21,72 +30,96 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.3254902)
+color = Color(0, 0, 0, 0.63529414)
 
-[node name="Title" type="Label" parent="Container"]
+[node name="InfoContainer" type="Control" parent="Container"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="InfoBackground" type="TextureRect" parent="Container/InfoContainer"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Title" type="Label" parent="Container/InfoContainer"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -0.5
-offset_right = 0.5
-offset_bottom = 23.0
+offset_left = 433.5
+offset_top = 106.0
+offset_right = 668.5
+offset_bottom = 173.0
 grow_horizontal = 2
-text = "sdasd"
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 48
+text = "Time's up!"
 horizontal_alignment = 1
 
-[node name="StatsContainer" type="VBoxContainer" parent="Container"]
+[node name="StatsContainer" type="VBoxContainer" parent="Container/InfoContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = 451.0
+offset_top = 217.0
+offset_right = 661.0
+offset_bottom = 391.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="CustomerStat" type="HBoxContainer" parent="Container/StatsContainer"]
+[node name="CustomerStat" type="HBoxContainer" parent="Container/InfoContainer/StatsContainer"]
 layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
 
-[node name="NameLabel" type="Label" parent="Container/StatsContainer/CustomerStat"]
+[node name="NameLabel" type="Label" parent="Container/InfoContainer/StatsContainer/CustomerStat"]
 layout_mode = 2
 text = "Customer:"
 
-[node name="Value" type="Label" parent="Container/StatsContainer/CustomerStat"]
+[node name="Value" type="Label" parent="Container/InfoContainer/StatsContainer/CustomerStat"]
 layout_mode = 2
 text = "#1"
 
-[node name="PercentStat" type="HBoxContainer" parent="Container/StatsContainer"]
+[node name="HSeparator" type="HSeparator" parent="Container/InfoContainer/StatsContainer"]
 layout_mode = 2
 
-[node name="PercentLabel" type="Label" parent="Container/StatsContainer/PercentStat"]
-layout_mode = 2
-text = "Shaved:"
-
-[node name="Value" type="Label" parent="Container/StatsContainer/PercentStat"]
-layout_mode = 2
-text = "100"
-
-[node name="Symbol" type="Label" parent="Container/StatsContainer/PercentStat"]
-layout_mode = 2
-text = "%"
-
-[node name="Buttons" type="HBoxContainer" parent="Container/StatsContainer"]
+[node name="PercentStat" type="HBoxContainer" parent="Container/InfoContainer/StatsContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Exit" type="Button" parent="Container/StatsContainer/Buttons"]
+[node name="PercentLabel" type="Label" parent="Container/InfoContainer/StatsContainer/PercentStat"]
 layout_mode = 2
+text = "Shaved:"
+
+[node name="Value" type="Label" parent="Container/InfoContainer/StatsContainer/PercentStat"]
+layout_mode = 2
+text = "100"
+
+[node name="Symbol" type="Label" parent="Container/InfoContainer/StatsContainer/PercentStat"]
+layout_mode = 2
+text = "%"
+
+[node name="HSeparator2" type="HSeparator" parent="Container/InfoContainer/StatsContainer"]
+layout_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="Container/InfoContainer/StatsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 70
+alignment = 1
+
+[node name="Exit" type="Button" parent="Container/InfoContainer/StatsContainer/Buttons"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_d2ucb")
 text = "Exit"
 
-[node name="Next" type="Button" parent="Container/StatsContainer/Buttons"]
+[node name="Next" type="Button" parent="Container/InfoContainer/StatsContainer/Buttons"]
 layout_mode = 2
 text = "Next"
 
-[connection signal="pressed" from="Container/StatsContainer/Buttons/Exit" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="Container/StatsContainer/Buttons/Next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="Container/InfoContainer/StatsContainer/Buttons/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Container/InfoContainer/StatsContainer/Buttons/Next" to="." method="_on_next_pressed"]

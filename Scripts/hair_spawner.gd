@@ -1,6 +1,6 @@
 extends Node
 
-signal end
+signal end(is_timeout: bool, percent: float)
 
 var sb
 
@@ -45,10 +45,10 @@ func _process(delta: float) -> void:
 		#hair_num = HAIR_NUMBER
 		#spawn_hairs(hair_num)
 		$"../CenterContainer/Control/CorrectLabel".visible = true
-		$CorrectTimer.start()
+		#$CorrectTimer.start()
 		#$ThinkTimer.start()
 		#current_iteration += 1
-		emit_signal("end")
+		emit_signal("end", false, 100.0)
 	
 	if Input.is_action_just_pressed("start_cut") and not $"..".is_paused:
 		AudioManager.shave.play()
@@ -91,13 +91,9 @@ func _process(delta: float) -> void:
 func _on_timer_timeout() -> void:
 	print("Bembelem Timer")
 	$"../CenterContainer/Control/WrongLabel".visible = true
-	free_hair()
 	
-	$WrongTimer.start()
-	#$ThinkTimer.start()
 	current_iteration += 1
-	emit_signal("end")
-
+	emit_signal("end", true, ((1 - (float)(hair_num) / HAIR_NUMBER)) * 100.0)
 
 func _on_correct_timer_timeout() -> void:
 	$"../CenterContainer/Control/CorrectLabel".visible = false

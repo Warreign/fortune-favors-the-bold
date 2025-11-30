@@ -33,12 +33,12 @@ func _process(delta: float):
 			add_child(pause_menu_instance)
 			is_paused = true;
 			
-		if Input.is_action_just_pressed("_end_level") or level_end:
-			var level_end_instance = preload(level_end_widget_path).instantiate()
-			add_child(level_end_instance)
-			level_end_instance.initialize_level_end(customer_number, 33.3)
-			is_paused = true;
+		if Input.is_action_just_pressed("_end_level"):
+			_on_level_end(true, 50);
 
 
-func _on_level_end():
-	level_end = true
+func _on_level_end(is_timeout: bool, percent_shaved: float):
+	var level_end_instance = preload(level_end_widget_path).instantiate()
+	add_child(level_end_instance)
+	level_end_instance.initialize_level_end(customer_number, percent_shaved, is_timeout)
+	is_paused = true;

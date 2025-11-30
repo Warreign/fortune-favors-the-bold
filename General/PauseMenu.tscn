@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://prq2bupdkrhr"]
+[gd_scene load_steps=3 format=3 uid="uid://prq2bupdkrhr"]
 
 [ext_resource type="Script" uid="uid://dg6cwem38nddr" path="res://General/PauseMenu.gd" id="1_08sjq"]
+[ext_resource type="Theme" uid="uid://drvxmh87hid0p" path="res://General/ui_theme.tres" id="2_a0k3f"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 layer = 6
@@ -13,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_a0k3f")
 
 [node name="Background" type="ColorRect" parent="Container"]
 layout_mode = 1
@@ -21,7 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.3529412)
+color = Color(0, 0, 0, 0.60784316)
 
 [node name="ButtonContainer" type="VBoxContainer" parent="Container"]
 layout_mode = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://db5og1n43icle"]
+[gd_scene load_steps=13 format=3 uid="uid://4sngsrvaboha"]
 
 [ext_resource type="Script" uid="uid://bc5wc0glnq37g" path="res://Levels/Customer.gd" id="1_penn8"]
 [ext_resource type="Texture2D" uid="uid://7ugarm1hxci4" path="res://Sprites/WashGame/Game.png" id="2_je866"]
@@ -19,6 +19,7 @@ size = Vector2(49.66404, 31.659348)
 
 [node name="HairGroom" type="Node2D"]
 script = ExtResource("1_penn8")
+customer_number = 1
 
 [node name="BackgroundShaveGame" type="Sprite2D" parent="."]
 position = Vector2(575.49976, 321.50012)
@@ -120,7 +121,8 @@ hair_prefab = ExtResource("5_031yc")
 CHANCE = 10
 
 [node name="ThinkTimer" type="Timer" parent="HairSpawner"]
-wait_time = 100.0
+wait_time = 3.0
+one_shot = true
 autostart = true
 
 [node name="CorrectTimer" type="Timer" parent="HairSpawner"]

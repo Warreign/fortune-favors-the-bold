@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7x8j0revg2us"]
+[gd_scene load_steps=8 format=3 uid="uid://b7x8j0revg2us"]
 
 [ext_resource type="Script" uid="uid://dyv0rackafgea" path="res://General/LoadingScreen.gd" id="1_ny31r"]
+
+[sub_resource type="SystemFont" id="SystemFont_ny31r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_23wes"]
 bg_color = Color(1, 1, 1, 1)
@@ -105,12 +107,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -150.0
-offset_top = -45.5
+offset_top = -46.0
 offset_right = 150.0
-offset_bottom = 45.5
+offset_bottom = 45.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = SubResource("SystemFont_ny31r")
 theme_override_font_sizes/font_size = 64
+text = "Hehe"
 
 [node name="ProgressBar" type="ProgressBar" parent="Container"]
 visible = false

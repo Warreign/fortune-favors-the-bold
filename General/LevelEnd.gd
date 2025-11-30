@@ -1,13 +1,19 @@
 extends CanvasLayer
 
 var current_customer_num: int
-@onready var percent_label: Label = $Container/StatsContainer/PercentStat/Value
-@onready var num_label: Label = $Container/StatsContainer/CustomerStat/Value
+@onready var percent_label: Label = $Container/InfoContainer/StatsContainer/PercentStat/Value
+@onready var num_label: Label = $Container/InfoContainer/StatsContainer/CustomerStat/Value
+@onready var main_title_label: Label = $Container/InfoContainer/Title
 
-func initialize_level_end(customer_num: int, percent: float):
+const FULLY_SHAVED_TITLE: String = "Perfectly shaved!"
+
+func initialize_level_end(customer_num: int, percent: float, is_timeout: bool):
 	current_customer_num = customer_num
-	percent_label.set_text(String.num(percent))
+	percent_label.set_text(String.num(percent, 2))
 	num_label.set_text(String.num_int64(customer_num))
+	
+	if not is_timeout:
+		main_title_label.set_text(FULLY_SHAVED_TITLE)
 
 func _on_exit_pressed() -> void:
 	SceneLoader.load_scene(get_parent(), "main_menu", "Returning to menu")

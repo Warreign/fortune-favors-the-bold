@@ -1,40 +1,61 @@
-[gd_scene load_steps=10 format=3 uid="uid://crqo8o2cfemv7"]
+[gd_scene load_steps=13 format=3 uid="uid://crqo8o2cfemv7"]
 
-[ext_resource type="Texture2D" uid="uid://7ugarm1hxci4" path="res://Sprites/WashGame/Game.png" id="1_n7bfs"]
-[ext_resource type="Script" uid="uid://bc5wc0glnq37g" path="res://Levels/Customer.gd" id="1_pxufq"]
-[ext_resource type="Texture2D" uid="uid://pief7y7ppxla" path="res://Sprites/WashGame/headF.png" id="2_renv4"]
-[ext_resource type="Script" uid="uid://blqx70sywhngi" path="res://Scripts/hair_spawner.gd" id="3_sjn8q"]
-[ext_resource type="PackedScene" uid="uid://dr7seaticcntf" path="res://Prefabs/Hair.tscn" id="4_0dohr"]
-[ext_resource type="Script" uid="uid://cbb0f3rgtib20" path="res://Scripts/shaver.gd" id="5_tp26c"]
-[ext_resource type="Texture2D" uid="uid://b3yvrtrvg4o2m" path="res://Sprites/WashGame/Sponge.png" id="6_ttq7d"]
+[ext_resource type="Script" uid="uid://bc5wc0glnq37g" path="res://Levels/Customer.gd" id="1_tp26c"]
+[ext_resource type="Texture2D" uid="uid://7ugarm1hxci4" path="res://Sprites/WashGame/Game.png" id="2_ttq7d"]
+[ext_resource type="Texture2D" uid="uid://pief7y7ppxla" path="res://Sprites/WashGame/headF.png" id="3_xnbha"]
+[ext_resource type="Texture2D" uid="uid://dy1p8s5ej0mti" path="res://Sprites/WashGame/chair.png" id="4_wsl7q"]
+[ext_resource type="Texture2D" uid="uid://c2tdn2yv62tj8" path="res://Sprites/WashGame/timer.png" id="5_t6ypn"]
+[ext_resource type="Script" uid="uid://blqx70sywhngi" path="res://Scripts/hair_spawner.gd" id="6_retuo"]
+[ext_resource type="PackedScene" uid="uid://dr7seaticcntf" path="res://Prefabs/Hair.tscn" id="7_wvesq"]
+[ext_resource type="Script" uid="uid://cbb0f3rgtib20" path="res://Scripts/shaver.gd" id="8_6vvar"]
+[ext_resource type="Texture2D" uid="uid://7ixxwlmtejei" path="res://Sprites/WashGame/shaver.png" id="9_rfgh6"]
+[ext_resource type="Texture2D" uid="uid://ciy1ymckktomb" path="res://Sprites/WashGame/shaver_head1.png" id="10_3niro"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0nlrr"]
 radius = 129.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_twggc"]
-size = Vector2(81.5586, 35.125847)
+size = Vector2(49.66404, 31.659348)
 
 [node name="HairGroom" type="Node2D"]
-script = ExtResource("1_pxufq")
-customer_number = 1
+script = ExtResource("1_tp26c")
+customer_number = 2
 
-[node name="BackgroundWashGame" type="Sprite2D" parent="."]
+[node name="BackgroundShaveGame" type="Sprite2D" parent="."]
 position = Vector2(575.49976, 321.50012)
 scale = Vector2(0.6015623, 0.5990741)
-texture = ExtResource("1_n7bfs")
+texture = ExtResource("2_ttq7d")
 
 [node name="Head" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 349.0
-offset_top = 65.0
-offset_right = 812.0
-offset_bottom = 528.0
+offset_left = 347.0
+offset_top = 27.0
+offset_right = 810.0
+offset_bottom = 490.0
 
-[node name="Plate" type="Sprite2D" parent="Head"]
+[node name="Head" type="Sprite2D" parent="Head"]
 position = Vector2(213.99994, 290.99994)
 scale = Vector2(0.2554876, 0.2309982)
-texture = ExtResource("2_renv4")
+texture = ExtResource("3_xnbha")
+
+[node name="Chair" type="Sprite2D" parent="."]
+position = Vector2(561, 632)
+scale = Vector2(0.207, 0.206)
+texture = ExtResource("4_wsl7q")
+
+[node name="Clock" type="Sprite2D" parent="."]
+position = Vector2(573, 111.000015)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("5_t6ypn")
+
+[node name="ClockLabel" type="Label" parent="Clock"]
+offset_left = -1000.00024
+offset_top = -475.00015
+offset_right = 950.00024
+offset_bottom = 49.999847
+theme_override_font_sizes/font_size = 400
+text = "00:00:000"
 
 [node name="CenterContainer" type="VBoxContainer" parent="."]
 anchors_preset = 8
@@ -80,13 +101,6 @@ theme_override_colors/font_color = Color(0.698039, 0, 0, 1)
 text = "Timeout"
 horizontal_alignment = 1
 
-[node name="ClockLabel" type="Label" parent="CenterContainer/Control"]
-layout_mode = 0
-offset_left = 46.0
-offset_top = -603.0
-offset_right = 146.0
-offset_bottom = -580.0
-
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
 offset_left = 388.0
 offset_top = 180.0
@@ -95,17 +109,19 @@ offset_bottom = 528.0
 border_color = Color(1, 0, 0, 0)
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-2, -38)
 
 [node name="ReferenceHeadCollision" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(563, 317)
+position = Vector2(563, 316)
 shape = SubResource("CircleShape2D_0nlrr")
 
 [node name="HairSpawner" type="Node" parent="."]
-script = ExtResource("3_sjn8q")
-hair_prefab = ExtResource("4_0dohr")
+script = ExtResource("6_retuo")
+hair_prefab = ExtResource("7_wvesq")
+CHANCE = 10
 
 [node name="ThinkTimer" type="Timer" parent="HairSpawner"]
-wait_time = 100.0
+wait_time = 40.0
 autostart = true
 
 [node name="CorrectTimer" type="Timer" parent="HairSpawner"]
@@ -135,13 +151,21 @@ energy = 0.1
 [node name="Shaver" type="CharacterBody2D" parent="." groups=["Shaver"]]
 z_index = 1
 position = Vector2(1, 1)
-script = ExtResource("5_tp26c")
+script = ExtResource("8_6vvar")
 
 [node name="Shaver2" type="Sprite2D" parent="Shaver"]
 visibility_layer = 2
-position = Vector2(366.708, 196.641)
-scale = Vector2(2.65168, 2.8503)
-texture = ExtResource("6_ttq7d")
+position = Vector2(428, 216.00002)
+rotation = -0.64751714
+scale = Vector2(0.4, 0.431)
+texture = ExtResource("9_rfgh6")
+
+[node name="Shaver3" type="Sprite2D" parent="Shaver"]
+visibility_layer = 2
+position = Vector2(428, 216.00002)
+rotation = -0.64751714
+scale = Vector2(0.4, 0.431)
+texture = ExtResource("10_3niro")
 
 [node name="ColorRect" type="ColorRect" parent="Shaver"]
 visible = false
@@ -151,8 +175,8 @@ offset_bottom = 181.0
 color = Color(0.992157, 0.992157, 0.227451, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shaver"]
-position = Vector2(350.00003, 183.00003)
-rotation = -0.528221
+position = Vector2(355.63208, 188.14241)
+rotation = -0.65100783
 shape = SubResource("RectangleShape2D_twggc")
 
 [connection signal="timeout" from="HairSpawner/ThinkTimer" to="HairSpawner" method="_on_timer_timeout"]
