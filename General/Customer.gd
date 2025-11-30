@@ -29,10 +29,10 @@ func _process(delta: float):
 	#if Input.is_action_just_pressed("to_main_menu"):
 		#SceneLoader.load_scene(self, "main_menu", "Menu")
 		
-	if not $HairGroom.is_running() and Input.is_action_just_pressed("start_shaving"):
-		start_game()
-		
 	if not is_paused:
+		if not $HairGroom.is_running() and Input.is_action_just_pressed("start_shaving"):
+			start_game()
+		
 		if Input.is_action_just_pressed("pause"):
 			var pause_menu_instance = preload(pause_widget_path).instantiate()
 			add_child(pause_menu_instance)

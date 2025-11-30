@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwp431hpivcx7"]
+[gd_scene load_steps=3 format=3 uid="uid://bx7vbc3x0ytgl"]
 
-[ext_resource type="Script" uid="uid://dwvfnu7tgbdkk" path="res://Scripts/audio_manager.gd" id="1_6ksl6"]
+[ext_resource type="Script" path="res://Scripts/audio_manager.gd" id="1_6ksl6"]
 [ext_resource type="AudioStream" uid="uid://bbhfjxtc6lrf8" path="res://Audio/foley-hand-basin-sink-slow-speed-running-water-238013.mp3" id="2_pun2d"]
 
 [node name="AudioManager" type="Node"]

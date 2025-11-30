@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://80ey67ev4igw"]
+[gd_scene load_steps=8 format=3 uid="uid://80ey67ev4igw"]
 
 [ext_resource type="Script" uid="uid://sj46uu1aptnp" path="res://General/LevelEnd.gd" id="1_shjiq"]
 [ext_resource type="Theme" uid="uid://drvxmh87hid0p" path="res://General/ui_theme.tres" id="2_o0fxl"]
+[ext_resource type="Texture2D" uid="uid://dqgs37bdmkbma" path="res://Sprites/WashGame/8a3d7a3fcc5059d7.png" id="3_d2ucb"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_o0fxl"]
 device = -1
@@ -9,6 +10,14 @@ keycode = 4194305
 
 [sub_resource type="Shortcut" id="Shortcut_d2ucb"]
 events = [SubResource("InputEventKey_o0fxl")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_d2ucb"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_0e1dg"]
+events = [SubResource("InputEventKey_d2ucb")]
 
 [node name="LevelEnd" type="CanvasLayer"]
 layer = 5
@@ -30,7 +39,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.63529414)
+color = Color(0, 0, 0, 0.80784315)
+
+[node name="TextureRect" type="TextureRect" parent="Container"]
+layout_mode = 0
+offset_left = -64.0
+offset_top = 33.0
+offset_right = 525.0
+offset_bottom = 622.0
+texture = ExtResource("3_d2ucb")
+expand_mode = 2
 
 [node name="InfoContainer" type="Control" parent="Container"]
 anchors_preset = 0
@@ -119,6 +137,7 @@ text = "Exit"
 
 [node name="Next" type="Button" parent="Container/InfoContainer/StatsContainer/Buttons"]
 layout_mode = 2
+shortcut = SubResource("Shortcut_0e1dg")
 text = "Next"
 
 [connection signal="pressed" from="Container/InfoContainer/StatsContainer/Buttons/Exit" to="." method="_on_exit_pressed"]

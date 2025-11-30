@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://7ugarm1hxci4" path="res://Sprites/WashGame/Game.png" id="1_0nlrr"]
 [ext_resource type="Script" uid="uid://blqx70sywhngi" path="res://Scripts/hair_spawner.gd" id="1_hivxq"]
-[ext_resource type="Script" uid="uid://bpkntrliw2cqo" path="res://Scenes/HairGroom.gd" id="1_ove2h"]
+[ext_resource type="Script" path="res://Scenes/HairGroom.gd" id="1_ove2h"]
 [ext_resource type="Texture2D" uid="uid://pief7y7ppxla" path="res://Sprites/WashGame/headF.png" id="2_0nlrr"]
 [ext_resource type="Script" uid="uid://cbb0f3rgtib20" path="res://Scripts/shaver.gd" id="3_i71ie"]
 [ext_resource type="Texture2D" uid="uid://dy1p8s5ej0mti" path="res://Sprites/WashGame/chair.png" id="3_ove2h"]
@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://ciy1ymckktomb" path="res://Sprites/WashGame/shaver_head1.png" id="8_cnocn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0nlrr"]
-radius = 129.0
+radius = 135.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_twggc"]
 size = Vector2(49.66404, 31.659348)

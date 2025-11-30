@@ -1,7 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1mo6ajejrja1"]
+[gd_scene load_steps=5 format=3 uid="uid://df88dopjr6cbf"]
 
 [ext_resource type="PackedScene" uid="uid://4sngsrvaboha" path="res://General/Customer.tscn" id="1_cvxm2"]
+[ext_resource type="Texture2D" uid="uid://bup2dckhw00u5" path="res://Sprites/WashGame/heads/headF1.png" id="2_h83hp"]
+[ext_resource type="PackedScene" uid="uid://cgfp8d5jn4bg1" path="res://Prefabs/Hair1.tscn" id="3_u8xys"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h83hp"]
+radius = 136.23509
 
 [node name="Customer" instance=ExtResource("1_cvxm2")]
 
+[node name="Head" parent="HairGroom/Head" index="0"]
+texture = ExtResource("2_h83hp")
+
+[node name="ReferenceHeadCollision" parent="HairGroom/Area2D" index="0"]
+position = Vector2(563, 329)
+shape = SubResource("CircleShape2D_h83hp")
+
+[node name="HairSpawner" parent="HairGroom" index="7"]
+hair_prefab = ExtResource("3_u8xys")
+
+[node name="ThinkTimer" parent="HairGroom/HairSpawner" index="0"]
+wait_time = 1.0
+
+[node name="Text" parent="TextBubble/Control" index="0"]
+text = "Guess courage starts at zero... 
+Make me shine. 
+By the way... To shave me hold the left mouse button."
+
 [editable path="HairGroom"]
+[editable path="TextBubble"]

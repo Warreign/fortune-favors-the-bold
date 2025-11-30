@@ -47,7 +47,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if hair_num <= 0:
 		print("em")
-		$"../CenterContainer/Control/CorrectLabel".visible = true
 		emit_signal("end", false, 100.0)
 	
 	if ($ThinkTimer.is_stopped() and Input.is_action_just_pressed("start_shaving")):
@@ -93,6 +92,8 @@ func _on_timer_timeout() -> void:
 	
 	$"../Clock/ClockLabel".text = clock_format % [0, 0, 0]
 	
+	AudioManager.shave.stop()
+	
 
 func spawn_hairs(number: int):
 	# var spawn_rect = $"../ReferenceRect"
@@ -124,6 +125,7 @@ func spawn_hair(prefab, pos):
 	add_child(inst)
 	hair_list.append(inst)
 	inst.position = pos
+	inst.rotation = randf_range(-180, 180)
 	inst.connect("cut", _on_hair_cut)
 
 

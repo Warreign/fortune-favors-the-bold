@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlgxv0imprhfq"]
+
+[ext_resource type="PackedScene" uid="uid://4sngsrvaboha" path="res://General/Customer.tscn" id="1_fxjd3"]
+[ext_resource type="Texture2D" uid="uid://bmqc2va15rxb5" path="res://Sprites/WashGame/heads/headF2.png" id="2_fvftb"]
+[ext_resource type="PackedScene" uid="uid://bkca8tyfhjy10" path="res://Prefabs/Hair3.tscn" id="3_fvftb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fxjd3"]
+radius = 132.0606
+
+[node name="Customer" instance=ExtResource("1_fxjd3")]
+customer_number = 3
+
+[node name="Head" parent="HairGroom/Head" index="0"]
+texture = ExtResource("2_fvftb")
+
+[node name="ReferenceHeadCollision" parent="HairGroom/Area2D" index="0"]
+position = Vector2(563, 326)
+shape = SubResource("CircleShape2D_fxjd3")
+
+[node name="HairSpawner" parent="HairGroom" index="7"]
+hair_prefab = ExtResource("3_fvftb")
+
+[node name="ThinkTimer" parent="HairGroom/HairSpawner" index="0"]
+wait_time = 1.0
+
+[node name="Text" parent="TextBubble/Control" index="0"]
+text = "No turning back… shave it all."
+
+[editable path="HairGroom"]
+[editable path="TextBubble"]

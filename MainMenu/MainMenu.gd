@@ -8,6 +8,8 @@ func _ready() -> void:
 			"customer2": "res://Levels/customer2.tscn",
 			"customer3": "res://Levels/customer3.tscn",
 			"customer4": "res://Levels/customer4.tscn",
+			"customer5": "res://Levels/customer5.tscn",
+			"customer6": "res://Levels/customer6.tscn",
 			"main_menu": "res://MainMenu/MainMenu.tscn"
 		},
 		"path_to_progress_bar": "Container/ProgressBar",

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5aacmxdcr34u"]
+
+[ext_resource type="PackedScene" uid="uid://4sngsrvaboha" path="res://General/Customer.tscn" id="1_nefjw"]
+[ext_resource type="Texture2D" uid="uid://k8207str3kfj" path="res://Sprites/WashGame/heads/headM2.png" id="2_lva1m"]
+[ext_resource type="PackedScene" uid="uid://cgfp8d5jn4bg1" path="res://Prefabs/Hair1.tscn" id="3_lva1m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nefjw"]
+radius = 136.00368
+
+[node name="Customer" instance=ExtResource("1_nefjw")]
+customer_number = 4
+
+[node name="Head" parent="HairGroom/Head" index="0"]
+texture = ExtResource("2_lva1m")
+
+[node name="ReferenceHeadCollision" parent="HairGroom/Area2D" index="0"]
+position = Vector2(563, 317)
+shape = SubResource("CircleShape2D_nefjw")
+
+[node name="HairSpawner" parent="HairGroom" index="7"]
+hair_prefab = ExtResource("3_lva1m")
+
+[node name="ThinkTimer" parent="HairGroom/HairSpawner" index="0"]
+wait_time = 1.0
+
+[node name="Text" parent="TextBubble/Control" index="0"]
+text = "Show me what bravery feels like."
+
+[editable path="HairGroom"]
+[editable path="TextBubble"]
