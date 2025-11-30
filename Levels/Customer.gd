@@ -15,7 +15,7 @@ var is_paused: bool:
 var level_end = false
 
 func _ready() -> void:
-	$HairSpawner.connect("end", _on_level_end)
+	$HairGroom.level_ended.connect(_on_level_end)
 
 func initialize_end_screen(shave_percent: float, customer_num: int):
 	var level_end_instance = preload(level_end_widget_path).instantiate()
@@ -24,8 +24,11 @@ func initialize_end_screen(shave_percent: float, customer_num: int):
 
 
 func _process(delta: float):
-	if Input.is_action_just_pressed("to_main_menu"):
-		SceneLoader.load_scene(self, "main_menu", "Menu")
+	#if Input.is_action_just_pressed("to_main_menu"):
+		#SceneLoader.load_scene(self, "main_menu", "Menu")
+		
+	if not $HairGroom.is_running() and Input.is_action_just_pressed("start_shaving"):
+		start_game()
 		
 	if not is_paused:
 		if Input.is_action_just_pressed("pause"):
@@ -42,3 +45,6 @@ func _on_level_end(is_timeout: bool, percent_shaved: float):
 	add_child(level_end_instance)
 	level_end_instance.initialize_level_end(customer_number, percent_shaved, is_timeout)
 	is_paused = true;
+	
+func start_game() -> void:
+	$HairGroom.launch_game();

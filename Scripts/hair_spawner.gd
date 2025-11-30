@@ -14,7 +14,7 @@ var colorOrange = Color("e8680f")
 var colorGreen = Color("00ff00")
 
 # inspiration for timer: https://www.youtube.com/watch?v=HrBjzSqEpwE
-var clock_format = "%02d:%02d:%02d" 
+var clock_format = "%02d:%02d:%03d" 
 
 var hair_list: Array[Node]
 var hair_num = 0
@@ -36,72 +36,63 @@ func _ready() -> void:
 	$"../Clock/ClockLabel".text = clock_format % [60, 0, 0]
 	hair_num = HAIR_NUMBER
 	spawn_hairs(hair_num)
-
+	
+	var wt = $ThinkTimer.wait_time
+	var msec = fmod(wt, 1) * 1000
+	var sec = fmod(wt, 60)
+	var minit = wt / 60
+	$"../Clock/ClockLabel".text = clock_format % [minit, sec, msec]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if hair_num <= 0:
 		print("em")
-		#hair_num = HAIR_NUMBER
-		#spawn_hairs(hair_num)
 		$"../CenterContainer/Control/CorrectLabel".visible = true
-		#$CorrectTimer.start()
-		#$ThinkTimer.start()
-		#current_iteration += 1
 		emit_signal("end", false, 100.0)
 	
-	if Input.is_action_just_pressed("start_cut") and not $"..".is_paused:
-		AudioManager.shave.play()
+	if ($ThinkTimer.is_stopped() and Input.is_action_just_pressed("start_shaving")):
+		$ThinkTimer.start()
 	
-	if Input.is_action_just_released("start_cut"):
-		AudioManager.shave.stop()
-	
-	if $"..".is_paused:
-		$ThinkTimer.paused = true
-	
-	if not $"..".is_paused and $ThinkTimer.paused:
-		$ThinkTimer.paused = false
-	
-	var wt = $ThinkTimer.wait_time
-	var tl = $ThinkTimer.time_left
-	
-	var msec = fmod(tl, 1) * 1000
-	var sec = fmod(tl, 60)
-	var minit = tl / 60
+	if not $ThinkTimer.is_stopped():
+		if Input.is_action_just_pressed("start_cut") and not $ThinkTimer.paused:
+			AudioManager.shave.play()
+		
+		if Input.is_action_just_released("start_cut"):
+			AudioManager.shave.stop()
+		
+		if $"../..".is_paused:
+			$ThinkTimer.paused = true
+		
+		if not $"../..".is_paused and $ThinkTimer.paused:
+			$ThinkTimer.paused = false
+		
+		var wt = $ThinkTimer.wait_time
+		var tl = $ThinkTimer.time_left
+			
+		var msec = fmod(tl, 1) * 1000
+		var sec = fmod(tl, 60)
+		var minit = tl / 60
 
-	$"../Clock/ClockLabel".text = clock_format % [minit, sec, msec]
+		$"../Clock/ClockLabel".text = clock_format % [minit, sec, msec]
 
-	$"../CenterContainer/ProgressBar".value = wt - tl
+	#$"../CenterContainer/ProgressBar".value = wt - tl
 	
-	if tl < wt/2:
-		#red
-		sb.bg_color = colorOrange.lerp(colorRed, ((wt/2-tl)/(wt/2)))
-	else:
-		#green
-		sb.bg_color = colorGreen.lerp(colorOrange, ((wt-tl)/(wt/2)))
-	
-	if current_iteration > MAX_ITERATION:
-		pass
-	else:
-		$"../Label".text = str(current_iteration)
-	
-	#$ThinkTimer.start()
+	#if tl < wt/2:
+		##red
+		#sb.bg_color = colorOrange.lerp(colorRed, ((wt/2-tl)/(wt/2)))
+	#else:
+		##green
+		#sb.bg_color = colorGreen.lerp(colorOrange, ((wt-tl)/(wt/2)))
 
 
 func _on_timer_timeout() -> void:
 	print("Bembelem Timer")
-	$"../CenterContainer/Control/WrongLabel".visible = true
 	
 	current_iteration += 1
 	emit_signal("end", true, ((1 - (float)(hair_num) / HAIR_NUMBER)) * 100.0)
-
-func _on_correct_timer_timeout() -> void:
-	$"../CenterContainer/Control/CorrectLabel".visible = false
-
-
-func _on_wrong_timer_timeout() -> void:
-	$"../CenterContainer/Control/WrongLabel".visible = false
-
+	
+	$"../Clock/ClockLabel".text = clock_format % [0, 0, 0]
+	
 
 func spawn_hairs(number: int):
 	# var spawn_rect = $"../ReferenceRect"
@@ -147,7 +138,7 @@ func free_hair():
 
 func _on_hair_cut(drt: Node) -> void:
 	var chance_current = randi() % MAX_CHANCE 
-	if (Input.is_action_pressed("start_cut")) and (chance_current <= CHANCE):
+	if (Input.is_action_pressed("start_cut")) and not $ThinkTimer.paused and (chance_current <= CHANCE):
 		print(chance_current)
 		hair_list.erase(drt)
 		print(drt)

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://7ugarm1hxci4" path="res://Sprites/WashGame/Game.png" id="1_0nlrr"]
 [ext_resource type="Script" uid="uid://blqx70sywhngi" path="res://Scripts/hair_spawner.gd" id="1_hivxq"]
-[ext_resource type="Script" uid="uid://bc5wc0glnq37g" path="res://Levels/Customer.gd" id="1_ue8b2"]
+[ext_resource type="Script" uid="uid://bpkntrliw2cqo" path="res://Scenes/HairGroom.gd" id="1_ove2h"]
 [ext_resource type="Texture2D" uid="uid://pief7y7ppxla" path="res://Sprites/WashGame/headF.png" id="2_0nlrr"]
 [ext_resource type="Script" uid="uid://cbb0f3rgtib20" path="res://Scripts/shaver.gd" id="3_i71ie"]
 [ext_resource type="Texture2D" uid="uid://dy1p8s5ej0mti" path="res://Sprites/WashGame/chair.png" id="3_ove2h"]
@@ -18,7 +18,7 @@ radius = 129.0
 size = Vector2(49.66404, 31.659348)
 
 [node name="HairGroom" type="Node2D"]
-script = ExtResource("1_ue8b2")
+script = ExtResource("1_ove2h")
 
 [node name="BackgroundShaveGame" type="Sprite2D" parent="."]
 position = Vector2(575.49976, 321.50012)
@@ -55,6 +55,8 @@ offset_right = 950.00024
 offset_bottom = 49.999847
 theme_override_font_sizes/font_size = 400
 text = "00:00:000"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CenterContainer" type="VBoxContainer" parent="."]
 anchors_preset = 8
@@ -71,34 +73,10 @@ grow_vertical = 2
 alignment = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="CenterContainer"]
+visible = false
 layout_mode = 2
 max_value = 2.0
 show_percentage = false
-
-[node name="Control" type="Control" parent="CenterContainer"]
-layout_mode = 2
-
-[node name="CorrectLabel" type="Label" parent="CenterContainer/Control"]
-visible = false
-layout_mode = 0
-offset_left = -8.5
-offset_top = 0.5
-offset_right = 49.5
-offset_bottom = 23.5
-theme_override_colors/font_color = Color(0, 0.580392, 0, 1)
-text = "Clean"
-horizontal_alignment = 1
-
-[node name="WrongLabel" type="Label" parent="CenterContainer/Control"]
-visible = false
-layout_mode = 0
-offset_left = -8.5
-offset_top = 0.5
-offset_right = 49.5
-offset_bottom = 23.5
-theme_override_colors/font_color = Color(0.698039, 0, 0, 1)
-text = "Timeout"
-horizontal_alignment = 1
 
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
 offset_left = 388.0
@@ -121,28 +99,12 @@ CHANCE = 10
 
 [node name="ThinkTimer" type="Timer" parent="HairSpawner"]
 wait_time = 100.0
-autostart = true
 
 [node name="CorrectTimer" type="Timer" parent="HairSpawner"]
 wait_time = 0.2
 
 [node name="WrongTimer" type="Timer" parent="HairSpawner"]
 wait_time = 0.2
-
-[node name="Label" type="Label" parent="."]
-offset_left = 47.0
-offset_top = 21.0
-offset_right = 192.0
-offset_bottom = 65.0
-text = "0"
-
-[node name="Label2" type="Label" parent="."]
-offset_left = 965.0
-offset_top = 21.0
-offset_right = 1110.0
-offset_bottom = 65.0
-text = "Hover over dirt
-with the sponge"
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 energy = 0.1
@@ -178,6 +140,7 @@ position = Vector2(355.63208, 188.14241)
 rotation = -0.65100783
 shape = SubResource("RectangleShape2D_twggc")
 
+[connection signal="level_ended" from="." to="." method="_end_print"]
 [connection signal="timeout" from="HairSpawner/ThinkTimer" to="HairSpawner" method="_on_timer_timeout"]
 [connection signal="timeout" from="HairSpawner/CorrectTimer" to="HairSpawner" method="_on_correct_timer_timeout"]
 [connection signal="timeout" from="HairSpawner/WrongTimer" to="HairSpawner" method="_on_wrong_timer_timeout"]
