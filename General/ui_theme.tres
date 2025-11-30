@@ -8,30 +8,34 @@
 font_names = PackedStringArray("Cursive")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iby16"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 5.0
 texture = ExtResource("1_ediru")
 region_rect = Rect2(85, 99, 428, 168)
+modulate_color = Color(0.41, 0.41, 0.41, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1iuu4"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1iuu4"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 5.0
 texture = ExtResource("1_cm6sn")
-expand_margin_left = 20.0
-expand_margin_right = 20.0
-expand_margin_bottom = 5.0
 region_rect = Rect2(85, 98.919205, 428.1397, 168.16844)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cm6sn"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 5.0
 texture = ExtResource("1_ediru")
-expand_margin_left = 20.0
-expand_margin_right = 20.0
-expand_margin_bottom = 5.0
 region_rect = Rect2(84.59308, 99.215294, 428.99158, 168.02298)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c65qe"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 5.0
 texture = ExtResource("3_1iuu4")
-expand_margin_left = 20.0
-expand_margin_right = 20.0
-expand_margin_bottom = 5.0
 region_rect = Rect2(85, 100, 429, 167)
 
 [resource]

@@ -4,8 +4,10 @@ extends Control
 func _ready() -> void:
 	SceneLoader.set_configuration({
 		"scenes": {
-			"customer1": "res://Levels/Customer0.tscn",
-			"customer2": "res://Levels/Customer1.tscn",
+			"customer1": "res://Levels/customer1.tscn",
+			"customer2": "res://Levels/customer2.tscn",
+			"customer3": "res://Levels/customer3.tscn",
+			"customer4": "res://Levels/customer4.tscn",
 			"main_menu": "res://MainMenu/MainMenu.tscn"
 		},
 		"path_to_progress_bar": "Container/ProgressBar",

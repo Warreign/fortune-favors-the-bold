@@ -3,6 +3,8 @@ extends Node2D
 const pause_widget_path: String = "res://General/PauseMenu.tscn"
 const level_end_widget_path: String = "res://General/LevelEnd.tscn"
 
+@onready var text_bubble: TextBubble = $TextBubble
+
 @export var customer_number: int = 0
 
 var _is_paused: bool = false
@@ -47,4 +49,5 @@ func _on_level_end(is_timeout: bool, percent_shaved: float):
 	is_paused = true;
 	
 func start_game() -> void:
-	$HairGroom.launch_game();
+	$HairGroom.launch_game()
+	text_bubble.hide()

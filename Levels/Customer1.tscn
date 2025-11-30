@@ -1,16 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3alfiefarihq"]
+[gd_scene load_steps=2 format=3 uid="uid://c1mo6ajejrja1"]
 
-[ext_resource type="Script" uid="uid://bc5wc0glnq37g" path="res://Levels/Customer.gd" id="1_tp26c"]
-[ext_resource type="PackedScene" uid="uid://dn2le3mwahtax" path="res://Scenes/HairGroom.tscn" id="2_mghn3"]
+[ext_resource type="PackedScene" uid="uid://4sngsrvaboha" path="res://General/Customer.tscn" id="1_cvxm2"]
 
-[node name="Customer1" type="Node2D"]
-script = ExtResource("1_tp26c")
-customer_number = 1
-
-[node name="HairGroom" parent="." instance=ExtResource("2_mghn3")]
-
-[node name="ThinkTimer" parent="HairGroom/HairSpawner" index="0"]
-wait_time = 3.0
-one_shot = true
+[node name="Customer" instance=ExtResource("1_cvxm2")]
 
 [editable path="HairGroom"]
