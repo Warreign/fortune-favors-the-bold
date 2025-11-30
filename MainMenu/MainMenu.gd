@@ -15,6 +15,8 @@ func _ready() -> void:
 		"path_to_progress_bar": "Container/ProgressBar",
 		"loading_screen": "res://General/LoadingScreen.tscn"
 	})
+	
+	AudioManager.background.stop()
 
 
 func _on_start_pressed() -> void:

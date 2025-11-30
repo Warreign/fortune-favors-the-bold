@@ -19,9 +19,10 @@ shape = SubResource("CircleShape2D_fxjd3")
 
 [node name="HairSpawner" parent="HairGroom" index="7"]
 hair_prefab = ExtResource("3_fvftb")
+CHANCE = 20
 
 [node name="ThinkTimer" parent="HairGroom/HairSpawner" index="0"]
-wait_time = 1.0
+wait_time = 30.0
 
 [node name="Text" parent="TextBubble/Control" index="0"]
 text = "No turning back… shave it all."

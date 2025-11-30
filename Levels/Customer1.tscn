@@ -18,9 +18,11 @@ shape = SubResource("CircleShape2D_h83hp")
 
 [node name="HairSpawner" parent="HairGroom" index="7"]
 hair_prefab = ExtResource("3_u8xys")
+HAIR_NUMBER = 250
+CHANCE = 30
 
 [node name="ThinkTimer" parent="HairGroom/HairSpawner" index="0"]
-wait_time = 1.0
+wait_time = 30.0
 
 [node name="Text" parent="TextBubble/Control" index="0"]
 text = "Guess courage starts at zero... 

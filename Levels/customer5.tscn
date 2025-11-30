@@ -21,9 +21,10 @@ shape = SubResource("CircleShape2D_simb8")
 
 [node name="HairSpawner" parent="HairGroom" index="7"]
 hair_prefab = ExtResource("3_jr5b6")
+HAIR_NUMBER = 150
 
 [node name="ThinkTimer" parent="HairGroom/HairSpawner" index="0"]
-wait_time = 1.0
+wait_time = 30.0
 
 [node name="Text" parent="TextBubble/Control" index="0"]
 offset_right = 832.0

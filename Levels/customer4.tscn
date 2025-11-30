@@ -19,9 +19,11 @@ shape = SubResource("CircleShape2D_nefjw")
 
 [node name="HairSpawner" parent="HairGroom" index="7"]
 hair_prefab = ExtResource("3_lva1m")
+HAIR_NUMBER = 350
+CHANCE = 20
 
 [node name="ThinkTimer" parent="HairGroom/HairSpawner" index="0"]
-wait_time = 1.0
+wait_time = 30.0
 
 [node name="Text" parent="TextBubble/Control" index="0"]
 text = "Show me what bravery feels like."

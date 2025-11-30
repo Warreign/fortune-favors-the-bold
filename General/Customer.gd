@@ -18,6 +18,8 @@ var level_end = false
 
 func _ready() -> void:
 	$HairGroom.level_ended.connect(_on_level_end)
+	if not AudioManager.background.playing:
+		AudioManager.background.play()
 
 func initialize_end_screen(shave_percent: float, customer_num: int):
 	var level_end_instance = preload(level_end_widget_path).instantiate()

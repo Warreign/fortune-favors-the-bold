@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dn2le3mwahtax"]
+[gd_scene load_steps=14 format=3 uid="uid://dn2le3mwahtax"]
 
 [ext_resource type="Texture2D" uid="uid://7ugarm1hxci4" path="res://Sprites/WashGame/Game.png" id="1_0nlrr"]
 [ext_resource type="Script" uid="uid://blqx70sywhngi" path="res://Scripts/hair_spawner.gd" id="1_hivxq"]
-[ext_resource type="Script" path="res://Scenes/HairGroom.gd" id="1_ove2h"]
+[ext_resource type="Script" uid="uid://bpkntrliw2cqo" path="res://Scenes/HairGroom.gd" id="1_ove2h"]
 [ext_resource type="Texture2D" uid="uid://pief7y7ppxla" path="res://Sprites/WashGame/headF.png" id="2_0nlrr"]
 [ext_resource type="Script" uid="uid://cbb0f3rgtib20" path="res://Scripts/shaver.gd" id="3_i71ie"]
 [ext_resource type="Texture2D" uid="uid://dy1p8s5ej0mti" path="res://Sprites/WashGame/chair.png" id="3_ove2h"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c2tdn2yv62tj8" path="res://Sprites/WashGame/timer.png" id="4_cnocn"]
 [ext_resource type="Texture2D" uid="uid://7ixxwlmtejei" path="res://Sprites/WashGame/shaver.png" id="7_eyhjp"]
 [ext_resource type="Texture2D" uid="uid://ciy1ymckktomb" path="res://Sprites/WashGame/shaver_head1.png" id="8_cnocn"]
+[ext_resource type="Texture2D" uid="uid://dp0no1tfqoti5" path="res://Sprites/WashGame/heads/sparkles.png" id="11_16lhx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0nlrr"]
 radius = 135.0
@@ -104,11 +105,9 @@ CHANCE = 10
 [node name="ThinkTimer" type="Timer" parent="HairSpawner"]
 wait_time = 100.0
 
-[node name="CorrectTimer" type="Timer" parent="HairSpawner"]
-wait_time = 0.2
-
-[node name="WrongTimer" type="Timer" parent="HairSpawner"]
-wait_time = 0.2
+[node name="EndTimer" type="Timer" parent="HairSpawner"]
+wait_time = 1.5
+one_shot = true
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 energy = 0.1
@@ -144,7 +143,11 @@ position = Vector2(355.63208, 188.14241)
 rotation = -0.65100783
 shape = SubResource("RectangleShape2D_twggc")
 
+[node name="Sparkles" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(542, 243.00003)
+scale = Vector2(0.28364113, 0.35182044)
+texture = ExtResource("11_16lhx")
+
 [connection signal="level_ended" from="." to="." method="_end_print"]
 [connection signal="timeout" from="HairSpawner/ThinkTimer" to="HairSpawner" method="_on_timer_timeout"]
-[connection signal="timeout" from="HairSpawner/CorrectTimer" to="HairSpawner" method="_on_correct_timer_timeout"]
-[connection signal="timeout" from="HairSpawner/WrongTimer" to="HairSpawner" method="_on_wrong_timer_timeout"]

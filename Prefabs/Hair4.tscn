@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dk4nvihk8l54h"]
 
 [ext_resource type="Script" uid="uid://dmqodulj3qb0c" path="res://Scripts/hair.gd" id="1_swlqo"]
-[ext_resource type="Texture2D" uid="uid://burkwx8jakqif" path="res://Sprites/WashGame/Trash.png" id="2_iviav"]
+[ext_resource type="Texture2D" uid="uid://nuoecur7swbv" path="res://Sprites/WashGame/hairs/12ea772d7ba07496.png" id="2_swlqo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wpepe"]
 size = Vector2(55, 54)
@@ -23,6 +23,6 @@ shape = SubResource("RectangleShape2D_wpepe")
 [node name="Trash" type="Sprite2D" parent="."]
 position = Vector2(-1.0139599, 1.4296265)
 scale = Vector2(2.07304, 2.32812)
-texture = ExtResource("2_iviav")
+texture = ExtResource("2_swlqo")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

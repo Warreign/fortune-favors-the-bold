@@ -22,9 +22,13 @@ var hair_num = 0
 @export var MAX_ITERATION = 10
 var current_iteration = 1
 
+var is_ended: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#print(len(CHAR_LIST))
+	
+	end.connect(_end)
 	
 	#https://forum.godotengine.org/t/godot-4-0-change-progress-bar-fill-color/627
 	sb = StyleBoxFlat.new()
@@ -45,9 +49,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if hair_num <= 0:
+	if not is_ended and hair_num <= 0:
 		print("em")
-		emit_signal("end", false, 100.0)
+		AudioManager.sparkle.play()
+		end.emit(false, 100)
 	
 	if ($ThinkTimer.is_stopped() and Input.is_action_just_pressed("start_shaving")):
 		$ThinkTimer.start()
@@ -88,7 +93,7 @@ func _on_timer_timeout() -> void:
 	print("Bembelem Timer")
 	
 	current_iteration += 1
-	emit_signal("end", true, ((1 - (float)(hair_num) / HAIR_NUMBER)) * 100.0)
+	end.emit(true, ((1 - (float)(hair_num) / HAIR_NUMBER)) * 100.0)
 	
 	$"../Clock/ClockLabel".text = clock_format % [0, 0, 0]
 	
@@ -146,3 +151,6 @@ func _on_hair_cut(drt: Node) -> void:
 		print(drt)
 		drt.queue_free()
 		hair_num -= 1
+		
+func _end(a, b):
+	is_ended = true

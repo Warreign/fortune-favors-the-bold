@@ -26,8 +26,7 @@ CHANCE = 2
 wait_time = 600.0
 
 [node name="Text" parent="TextBubble/Control" index="0"]
-text = "Papoi PAPOI... BANANA
-Hahahahahaha"
+text = "Papoi PAPOI... BANANA"
 
 [editable path="HairGroom"]
 [editable path="TextBubble"]
